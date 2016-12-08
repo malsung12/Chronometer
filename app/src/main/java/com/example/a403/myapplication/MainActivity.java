@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 chronometer3.setBase(SystemClock.elapsedRealtime());
                 chronometer3.start();
-                chronometer3.setTextColor(0xFF0000ff);
+                chronometer3.setTextColor(Color.RED);
             }
         });
 
