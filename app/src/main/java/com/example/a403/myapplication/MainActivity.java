@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 import org.w3c.dom.Text;
 
 import static android.R.attr.button;
+import static android.R.attr.visible;
 import static com.example.a403.myapplication.R.id.calendarView5;
 import static com.example.a403.myapplication.R.id.chronometer3;
 import static com.example.a403.myapplication.R.id.radioButton3;
@@ -28,8 +29,10 @@ import static com.example.a403.myapplication.R.id.timePicker4;
 public class MainActivity extends AppCompatActivity {
 
     Chronometer chronometer3;
-    Button button2, button3;
-    RadioButton radioButton3,radioButton4;
+    Button button2;
+    Button button3;
+    RadioButton radioButton3;
+    RadioButton radioButton4;
     TimePicker timePicker4;
     CalendarView calendarView5;
     TextView textView;
@@ -42,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("시간 예약");
 
-        frame = (FrameLayout) findViewById(R.id.frame);
-        rg = (RadioGroup) findViewById(R.id.rg);
-        chronometer3 = (Chronometer) findViewById(R.id.chronometer3);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         timePicker4 = (TimePicker) findViewById(R.id.timePicker4);
         calendarView5 = (CalendarView) findViewById(R.id.calendarView5);
         textView = (TextView) findViewById(R.id.textView);
+        rg = (RadioGroup) findViewById(R.id.rg);
+        frame = (FrameLayout) findViewById(R.id.frame);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId == R.id.radioButton3) {
+                    frame.setVisibility(View.VISIBLE);
                     calendarView5.setVisibility(View.VISIBLE);
+                    timePicker4.setVisibility(View.INVISIBLE);
                 }
                 if(checkedId == R.id.radioButton4) {
+                    frame.setVisibility(View.VISIBLE);
                     timePicker4.setVisibility(View.VISIBLE);
+                    calendarView5.setVisibility(View.INVISIBLE);
                 }
             }
         });
