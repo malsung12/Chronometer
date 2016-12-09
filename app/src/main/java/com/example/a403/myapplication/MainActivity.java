@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     RadioGroup rg;
     FrameLayout frame;
+    int ye=0,mon=0,day=0,H=0,M=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("시간 예약");
 
+        chronometer3 = (Chronometer) findViewById(R.id.chronometer3);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         radioButton3 = (RadioButton) findViewById(R.id.radioButton3);
@@ -77,6 +79,28 @@ public class MainActivity extends AppCompatActivity {
                     timePicker4.setVisibility(View.VISIBLE);
                     calendarView5.setVisibility(View.INVISIBLE);
                 }
+            }
+        });
+
+        calendarView5.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                ye = year; mon = month; day = dayOfMonth;
+            }
+        });
+
+        timePicker4.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                H = hourOfDay; M = minute;
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chronometer3.stop();
+                chronometer3.setTextColor(Color.BLUE);
+                textView.setText(ye+"년"+mon+"월"+day+"일"+H+"시"+M+"분 예약됨");
             }
         });
 
